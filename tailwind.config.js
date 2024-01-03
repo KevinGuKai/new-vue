@@ -8,15 +8,18 @@ export default {
     "./src/**/*.{vue,js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
-    screens: {
-      'sm': '520px',
-      'tablet': '920px',
+    extend: {
+
     },
-    colors: {
-      'main-deep': '#800080',
-      ...colors,
+      screens: {
+        'sm': '520px',
+        'tablet': '920px',
+      },
+      colors: {
+        'main-deep': '#800080',
+        ...colors,
+
+      },
     },
-  },
-  plugins: [],
-}
+    plugins: [],
+  }
