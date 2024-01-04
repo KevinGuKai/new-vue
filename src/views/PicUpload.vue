@@ -1,22 +1,32 @@
 
 <script>
+
+
 export default {
     data() {
         return {
-            picfile: '',
-            filepic: '',
+            picFile: '',
+            filePic: '',
+            imageFile: [],
         }
     },
     methods:{
         uploadPic(event){
             
-            this.picfile = event.target.files[0];
-            console.log(this.picfile);
+            this.picFile = event.target.files[0];
 
-            if(this.picfile){
+            if(this.picFile){
                 const reader = new FileReader();
-                reader.onload = () =>{
-
+                reader.readAsDataURL(this.picFile);
+                reader.onload = (e) =>{
+                    console.log(e);
+                    this.filePic = e.target.result;
+                    this.imageFile = [
+                        {
+                            name: this.picFile.name,
+                            path:this.filePic,
+                        }
+                    ]
                 }
             }
         }
@@ -25,7 +35,8 @@ export default {
 </script>
 
 <template>
-    <input type="file" accept=".jpg, .png" @change="uploadPic()">
+    <input type="file" accept=".jpg, .png" @change="uploadPic">
+    <img :src="filePic" alt="" style="height: 300px;">
     <button type="button" class="border-2">上傳圖片</button>
 
 </template>
